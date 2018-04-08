@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <div class="headline"></div>
     <headNav></headNav>
       <router-view/>
     <footNav></footNav>
@@ -49,4 +50,12 @@ a
   clear:both
 .clearfix
   zoom:1
+.headline
+  background-color : #ff8080
+  position :absolute
+  width :100%
+  height :30px
+  z-index :-1
+  top :0px
+  left :0
 </style>

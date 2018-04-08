@@ -24,7 +24,9 @@
 </template>
 <script>
 /* eslint-disable */
-import { setCookie, getCookie } from "../../common/js/cookie.js";
+// import { setCookie, getCookie } from "../../common/js/cookie.js";
+import store from "../../common/js/store.js";
+import { mapMutations } from 'vuex';
 export default {
   data() {
     return {
@@ -40,15 +42,14 @@ export default {
       }
     }
   },
-  mounted(){
-  // 页面挂载获取cookie，如果存在username的cookie，则跳转到主页，不需登录
-    if(getCookie('username')){
-    // this.$router.push('/my')
-    }
-  },
+  // mounted(){
+  // // 页面挂载获取cookie，如果存在username的cookie，则跳转到主页，不需登录
+  //   if(getCookie('username')){
+  //   // this.$router.push('/my')
+  //   }
+  // },
   methods: {
-    gohome(){    
-    },
+    ...mapMutations(['set']),
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         let _this = this        
@@ -75,7 +76,8 @@ export default {
               } else {
                 _this.tishi = "登录成功"
                 _this.showTishi = true
-                setCookie('username',_this.ruleForm.user,1000*60)
+                // setCookie('username',_this.ruleForm.user,1000*60)
+                _this.set({n: _this.ruleForm.user})
                 setTimeout(function(){
                   _this.$router.push('/my')
                 }.bind(_this),1000)
@@ -88,8 +90,9 @@ export default {
           return false
         }
       })
-    } 
-  }
+    }
+  },
+  store
 }
 </script>
 <style lang="stylus">

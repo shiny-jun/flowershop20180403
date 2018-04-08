@@ -10,10 +10,12 @@ import VueResource from 'vue-resource'
 import $ from 'jquery'
 import BootstrapVue from 'bootstrap-vue'
 import Distpicker from 'v-distpicker'
+import Vuex from 'vuex'
 
 window.jquery = $
 window.$ = $
 Vue.config.productionTip = false
+Vue.use(Vuex)
 Vue.use(ElementUI)
 Vue.use(VueResource)
 Vue.use(BootstrapVue)
