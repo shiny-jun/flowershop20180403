@@ -49,7 +49,7 @@ export default {
   //   }
   // },
   methods: {
-    ...mapMutations(['set']),
+    ...mapMutations(['set','setId']),
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         let _this = this        
@@ -74,11 +74,14 @@ export default {
                 _this.showTishi = true;
               console.log("密码输入错误")
               } else {
+                let userId = JSON.parse(data);
+                console.log(userId);
                 _this.tishi = "登录成功"
                 _this.showTishi = true
                 // setCookie('username',_this.ruleForm.user,1000*60)
-                _this.set({n: _this.ruleForm.user})
                 setTimeout(function(){
+                  _this.setId({n: userId.UserId})
+                  _this.set({n: _this.ruleForm.user})
                   _this.$router.push('/my')
                 }.bind(_this),1000)
                 //gohome();

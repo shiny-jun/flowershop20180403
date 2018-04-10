@@ -44,6 +44,9 @@
 
 <script>
 /* eslint-disable */
+import store from "../../common/js/store.js";
+import { mapState, mapMutations } from 'vuex';
+
 export default {
   name: 'Cart',
   data () {
@@ -53,28 +56,42 @@ export default {
       tableData:[]
     }
   },
+  computed:mapState(['userId']),
   mounted:function(){
     // var orderHeight=document.body.clientHeight;
     // document.getElementById('order-list').style.height=orderHeight+'px';
   },
-  created:function(){        
-    this.$http.get('http://localhost:8088/flowershop/CartList.php').then((response) => {
-      //this.$set('goodslist', JSON.parse(response.data))
-      console.log(response.data)
-      var data=response.data
-      for (let item in data) {
-        this.tableData.push(data[item])
-      }
-      console.log(this.tableData)
-      for (var i=1; i<this.tableData.length; i++) {
-        this.totalCount=this.totalCount+this.tableData[i].FlosSum
-        this.totalMoney=this.totalMoney+this.tableData[i].allPrice
-        console.log(this.totalCount)
-      }
-      this.getAllMoney()
-    }) .catch(function(response) {
-      // console.log(response)
-    })
+  created:function(){
+    if (this.userId == null) {
+      this.$router.push("/login");
+    }
+    else{
+      let _this=this;
+      $.ajax({
+        type: "POST",
+        cache: false,
+        url: "http://localhost:8088/flowershop/CartList.php",
+        data: {userId:_this.userId},
+        dataType: "text",
+        success: function(data,textStatus) {
+          if(data == 0){
+
+          } else {
+            let mes = JSON.parse(data);
+            for (let item in mes) {
+              _this.tableData.push(mes[item])
+            }
+            console.log(_this.tableData)
+            for (var i=1; i<_this.tableData.length; i++) {
+              _this.totalCount=_this.totalCount+_this.tableData[i].FlosSum
+              _this.totalMoney=_this.totalMoney+_this.tableData[i].allPrice
+              console.log(_this.totalCount)
+            }
+            _this.getAllMoney()
+          }
+        }
+      })
+    }
   },
   methods:{
     addOrderList(goods) {
@@ -154,7 +171,8 @@ export default {
         }
       })
     }
-  }
+  },
+  store 
 }
 </script>
 //局部变量

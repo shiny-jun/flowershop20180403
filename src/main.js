@@ -11,7 +11,9 @@ import $ from 'jquery'
 import BootstrapVue from 'bootstrap-vue'
 import Distpicker from 'v-distpicker'
 import Vuex from 'vuex'
+import 'babel-polyfill'
 
+// window.Promise = Promise
 window.jquery = $
 window.$ = $
 Vue.config.productionTip = false

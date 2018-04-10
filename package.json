@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "array-includes": "^3.0.3",
+    "babel-polyfill": "^6.26.0",
     "bootstrap-vue": "^2.0.0-rc.5",
     "define-properties": "^1.1.2",
     "element-ui": "^2.3.2",
@@ -22,7 +23,8 @@
     "vue-awesome-swiper": "^3.1.3",
     "vue-resource": "^1.5.0",
     "vue-router": "^3.0.1",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "vuex-along": "^1.1.2"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
@@ -33,6 +35,7 @@
     "babel-plugin-syntax-jsx": "^6.18.0",
     "babel-plugin-transform-runtime": "^6.22.0",
     "babel-plugin-transform-vue-jsx": "^3.5.0",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.3.2",
     "babel-preset-stage-2": "^6.22.0",
     "chalk": "^2.0.1",

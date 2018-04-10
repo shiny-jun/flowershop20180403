@@ -8,6 +8,7 @@ import My from '@/components/page/My'
 import login from '@/components/page/login'
 import register from '@/components/page/register'
 import goods from '@/components/page/goods'
+import order from '@/components/page/order'
 
 Vue.use(Router)
 

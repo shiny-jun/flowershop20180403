@@ -23,7 +23,7 @@
         <el-button type="warning" size="medium" @click="getInCart">加入购物车</el-button>
         <el-button type="danger" size="medium">立即下单</el-button>
       </div>
-      <div class="get-cart" v-show="getCart">成功加入购物车</div>
+      <div class="getCart" v-show="getCart">成功加入购物车</div>
       <div class="false-cart" v-show="falseCart">加入购物车失败</div>
       <div style="clear:both;"></div>
     </div>
@@ -34,9 +34,8 @@
 </template>
 <script>
 /* eslint-disable */
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
-
+import store from "../../common/js/store.js";
+import { mapState, mapMutations } from 'vuex';
 /* eslint-disable */
 export default {
   data () {
@@ -59,6 +58,7 @@ export default {
       sliding: null
     }
   },
+  computed:mapState(['userId']),  
   methods: {
     handleChange (val) {
       console.log(val)
@@ -69,10 +69,14 @@ export default {
         type: 'POST',
         cache: false,
         url: 'http://localhost:8088/flowershop/getCart.php',
-        data: {floId: _this.goodsListId, num: _this.num1, userId: "1"},
+        data: {floId: _this.goodsListId, num: _this.num1, userId: _this.userId},
         dataType: 'text',
         success: function (data, textStatus) {
           console.log(data)
+          _this.getCart = true;
+          setTimeout(function () {
+            _this.getCart = false;
+          },3000)
         }
       })
     },
@@ -98,7 +102,8 @@ export default {
         _this.inventory = parseInt(_this.goodsInf.Inventory)
       }
     })
-  }
+  },
+  store
 }
 </script>
 <style lang="stylus">
@@ -149,6 +154,7 @@ export default {
     .getCart
       font:normal 400 19px '微软雅黑'
       color :green
+      font-size :12px
     .falseCart
       font:normal 400 19px '微软雅黑'    
       color :red

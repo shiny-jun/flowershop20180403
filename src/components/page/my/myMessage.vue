@@ -82,11 +82,12 @@ export default {
     console.log(CityInfo)
   },
   methods: {
-    ...mapMutations(['del']),
+    ...mapMutations(['del','delId']),
     quit() {
        /*删除cookie*/
       // delCookie("username");
       this.del()
+      this.delId()
       this.$router.push("/login");
     },
     forCity(state,city,area) {
