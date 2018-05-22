@@ -9,9 +9,9 @@
           <el-input  v-model="ruleForm.user" placeholder="请输入用户名/邮箱"></el-input>
         </el-form-item>
         <el-form-item label="密码"  prop="password">
-          <el-input  v-model="ruleForm.password" placeholder="请输入密码"></el-input>
+          <el-input type="password" v-model="ruleForm.password" placeholder="请输入密码" auto-complete="off"></el-input>
         </el-form-item>
-        <p v-show="showTishi" class="tishi">{{tishi}}</p>
+        <p v-show="showTishi" :class="[tishi === '登录成功' ? 'tishiGreen' : 'tishiRed']">{{tishi}}</p>
         <div class="button">
           <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
           <router-link to="/register">
@@ -110,9 +110,12 @@ export default {
     el-form 
       margin: auto
       width: 400px
-      .tishi 
-        color: red;
-        padding-bottom: 20px;
+    .tishiGreen
+      padding-bottom: 20px;
+      color: green;
+    .tishiRed
+      color: red;
+      padding-bottom: 20px;
 // .head {
 //   color: #ff6666;
 //   font: normal 500 20px "微软雅黑";

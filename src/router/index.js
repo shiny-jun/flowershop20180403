@@ -53,6 +53,11 @@ export default new Router({
       path: '/goods/:goodsListId',
       name: 'goods',
       component: goods
+    },
+    {
+      path: '/order/:goodsListId',
+      name: 'order',
+      component: order
     }
   ]
 })

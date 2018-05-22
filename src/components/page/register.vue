@@ -17,7 +17,7 @@
          <el-form-item label="邮箱" prop="mail">
           <el-input v-model="registerForm.mail" placeholder="请输入接收验证码的邮箱"></el-input>
         </el-form-item>
-        <p v-show="showTishi" class="tishi">{{tishi}}</p>
+        <p v-show="showTishi" :class="[tishi === '登录成功' ? 'tishiGreen' : 'tishiRed']">{{tishi}}</p>
         <div class="button">
           <el-button type="primary" @click="submitForm('registerForm')">注册</el-button>
           <router-link to="/login">
@@ -107,11 +107,11 @@ export default {
             success: function (data, textStatus) {
               console.log(data)
               console.log(textStatus)
-              if (data == -1) {
+              if (data === -1) {
                 _this.tishi = '注册失败'
                 _this.showTishi = true
                 console.log('注册失败')
-              } else if (data == 0) {
+              } else if (data === 0) {
                 _this.tishi = '此用户名已被注册'
                 _this.showTishi = true
                 console.log('此用户名已被注册')
@@ -149,7 +149,10 @@ export default {
   .bodys
     margin:10px 300px 50px
     width:400px
-    .tishi
-      color:red
-      padding-bottom: 20px
+    .tishiGreen
+      padding-bottom: 20px;
+      color: green;
+    .tishiRed
+      color: red;
+      padding-bottom: 20px;
 </style>
