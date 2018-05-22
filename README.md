@@ -1,6 +1,7 @@
 # flowershop
 
 > A Vue.js project
+>项目仍在开发
 
 ## Build Setup
 
