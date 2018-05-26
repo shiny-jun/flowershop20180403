@@ -137,7 +137,7 @@ export default {
     changeMes(){
       this.changeOk = false
       this.change = 'change'
-      this.changeName = 'changeName'  
+      this.changeName = 'changeName'
     },
     noChange(){
       this.changeOk = true
@@ -160,22 +160,24 @@ export default {
           name: _this.name, 
           phone: _this.phone, 
           email: _this.email, 
-          state: _this.state, 
-          city: _this.city, 
-          area: _this.area, 
+          state: _this.selectedOptions[0], 
+          city: _this.selectedOptions[1], 
+          area: _this.selectedOptions[2], 
           address: _this.address
         },
         dataType: "text",
         success: function(data,textStatus) {
           console.log(data);
           if (data == 'ok'){
-            _this.mes.Tel = _this.phone;
-            _this.mes.Email = _this.email;
-            _this.mes.State = _this.state;
-            _this.mes.City = _this.city;
-            _this.mes.area = _this.area;
-            _this.mes.Address = _this.address;
-            _this.changeSuccess = true;
+            let uname = _this.uName;
+            _this.get(uname);
+            // _this.mes.Tel = _this.phone;
+            // _this.mes.Email = _this.email;
+            // _this.mes.State = _this.state;
+            // _this.mes.City = _this.city;
+            // _this.mes.area = _this.area;
+            // _this.mes.Address = _this.address;
+            // _this.changeSuccess = true;
             setTimeout(() => {
               _this.changeOk = true;
               _this.changeSuccess = false; 
